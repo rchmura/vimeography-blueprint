@@ -1,9 +1,9 @@
 {
-  "name": "vimeography-player",
+  "name": "vimeography-blueprint",
   "version": "1.0.0",
-  "description": "Common vue component to use within Vimeography 2 themes.",
+  "description": "Common vue components and modules to use within Vimeography 2 themes.",
   "main": "dist/index.js",
-  "repository": "git@github.com:davekiss/vimeography-player.git",
+  "repository": "git@github.com:davekiss/vimeography-blueprint.git",
   "author": "Dave Kiss <dave@davekiss.com>",
   "license": "GPL-3.0",
   "private": false,
