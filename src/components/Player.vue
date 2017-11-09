@@ -15,7 +15,7 @@
 
   const Player = {
     template,
-    name: 'player',
+    name: 'Player',
     props: ['activeVideo'],
     mounted: function() {
       this.player = new VimeoPlayer(this.$refs.player, { id: this.activeVideo.id, responsive: true, speed: true });
