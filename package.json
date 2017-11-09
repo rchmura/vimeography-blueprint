@@ -1,0 +1,10 @@
+{
+  "name": "vimeography-player",
+  "version": "1.0.0",
+  "description": "Common vue component to use within Vimeography 2 themes.",
+  "main": "index.js",
+  "repository": "git@github.com:davekiss/vimeography-player.git",
+  "author": "Dave Kiss <dave@davekiss.com>",
+  "license": "GPL2",
+  "private": false
+}
