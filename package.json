@@ -33,6 +33,7 @@
     "webpack-dev-server": "^2.2.0"
   },
   "dependencies": {
-    "@vimeo/player": "^2.2.0"
+    "@vimeo/player": "^2.2.0",
+    "axios": "^0.17.0"
   }
 }
