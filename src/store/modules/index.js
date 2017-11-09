@@ -1,5 +1,3 @@
-/* This file should be included in Vimeography 2 core */
-
 /**
  *  Point of contact for Vimeography modules
  *

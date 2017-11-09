@@ -1,4 +1,3 @@
-/* This file should be included in Vimeography 2 core */
 import Vue from 'vue';
 
 import * as types from './types';

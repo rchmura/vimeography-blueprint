@@ -1,5 +1,3 @@
-/* This file should be included in Vimeography 2 core */
-
 export const PLAYER_READY = 'vimeography/player/READY';
 export const PLAYER_PLAY = 'vimeography/player/PLAY';
 export const PLAYER_PAUSE = 'vimeography/player/PAUSE';

@@ -1,4 +1,3 @@
-/* This file should be included in Vimeography 2 core */
 const getVideoId = (state, getters) => (video) => {
   return video.uri.replace(/\D/g,'')
 }

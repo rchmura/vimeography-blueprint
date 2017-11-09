@@ -1,4 +1,3 @@
-/* This file should be included in Vimeography 2 core */
 import * as types from './types'
 
 const playerReady = (store, player) => {

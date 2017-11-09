@@ -1,5 +1,3 @@
-/* This file should be included in Vimeography 2 core */
-
 export const LOAD_GALLERY = 'vimeography/gallery/LOAD';
 export const PERFORM_SEARCH = 'vimeography/gallery/SEARCH';
 export const PERFORM_SEARCH_SUCCESS = 'vimeography/gallery/SEARCH_SUCCESS';
