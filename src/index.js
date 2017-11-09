@@ -1,3 +1,9 @@
-import Player from './components/Player.vue'
+/**
+ *  Point of contact for Vimeography Blueprint
+ *
+ *  ie: import { Player } from 'vimeography-blueprint';
+ *
+ */
 
-export default Player;
+export Player from './components/Player.vue';
+export store from './store';
