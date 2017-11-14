@@ -1,7 +1,7 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+// import Vue from 'vue';
+// import Vuex from 'vuex';
 
-Vue.use(Vuex);
+// Vue.use(Vuex);
 
 import {
 	gallery,
@@ -9,16 +9,24 @@ import {
 	videos
 } from './modules';
 
-const store = new Vuex.Store({
-	modules: {
-		gallery,
-		player,
-		videos,
-	},
-	// state: {},
-	// getters: {},
-	// mutations: {},
-	// actions: {}
-});
+// const store = new Vuex.Store({
+// 	modules: {
+// 		gallery,
+// 		player,
+// 		videos,
+// 	},
+// 	// state: {},
+// 	// getters: {},
+// 	// mutations: {},
+// 	// actions: {}
+// });
 
-export default store;
+const storeModules = {
+	gallery,
+	player,
+	videos,
+};
+
+export default storeModules;
+
+// export default store;

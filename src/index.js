@@ -6,4 +6,5 @@
  */
 
 export Player from './components/Player.vue';
-export store from './store';
+// export store from './store';
+export storeModules from './store';
