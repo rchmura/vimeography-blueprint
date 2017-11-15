@@ -8,7 +8,8 @@
   "license": "GPL-3.0",
   "private": false,
   "scripts": {
-    "build": "NODE_ENV=production webpack -p --progress --colors --env production"
+    "build": "NODE_ENV=production webpack -p --progress --colors --env production",
+    "theme:create": "gulp --gulpfile ./src/cli/themes/create.js"
   },
   "peerDependencies": {
     "vue": "^2.3.4",
@@ -23,6 +24,13 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
+    "gulp": "^3.9.1",
+    "gulp-inject-string": "^1.1.0",
+    "gulp-install": "^1.1.0",
+    "gulp-prompt": "^0.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-template": "^4.0.0",
+    "gulp-util": "^3.0.8",
     "node-sass": "^4.5.0",
     "sass-loader": "^5.0.1",
     "vue": "^2.0.0",
@@ -30,7 +38,8 @@
     "vue-template-compiler": "^2.0.0",
     "vuex": "^3.0.1",
     "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0"
+    "webpack-dev-server": "^2.2.0",
+    "yargs": "^10.0.3"
   },
   "dependencies": {
     "@vimeo/player": "^2.2.0",
