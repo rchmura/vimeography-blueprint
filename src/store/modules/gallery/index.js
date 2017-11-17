@@ -7,7 +7,6 @@ const gallery = {
     loading: false,
     id: '',
     theme: '',
-    templates: {},
     version: '',
     settings: {},
     tags: {},
