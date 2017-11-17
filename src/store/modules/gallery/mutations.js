@@ -11,6 +11,7 @@ const mutations = {
       state.tags = payload.tags;
       state.source = payload.source;
       state.limit = payload.limit;
+      state.pro = payload.pro;
 
       state.paging.default = {
         sort: payload.paging.sort,

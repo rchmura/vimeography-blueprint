@@ -12,6 +12,7 @@ const gallery = {
     tags: {},
     source: '',
     limit: 0,
+    pro: false,
     paging: {
       default: {
         direction: 'desc',
