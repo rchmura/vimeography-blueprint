@@ -5,7 +5,6 @@ const mutations = {
 
       state.id = payload.id;
       state.theme = payload.theme;
-      state.templates = payload.templates;
       state.version = payload.version;
       state.settings = payload.settings;
       state.tags = payload.tags;
