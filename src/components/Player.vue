@@ -38,7 +38,7 @@
 
       });
 
-      this.player.ready().then( () => this.playerReady(this.player) );
+      this.player.ready().catch( error => alert('Vimeography Error: ' + error.message) ).then( () => this.playerReady(this.player) );
       this.player.on('play', data => this.playerPlay(data) );
       this.player.on('pause', data => this.playerPause(data) );
       this.player.on('timeupdate', data => this.playerTimeUpdate(data) );
