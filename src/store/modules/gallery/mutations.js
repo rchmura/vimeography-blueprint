@@ -74,14 +74,14 @@ const mutations = {
   [types.FETCH_PAGE_SUCCESS] (state, payload) {
     const paging = this.getters.paging;
 
-    paging.page = payload.page;
+    paging.page = payload.data.page;
 
     if ( payload.page > paging.highRange ) {
-      paging.highRange = payload.page;
+      paging.highRange = payload.data.page;
     }
 
     if ( payload.page < paging.lowRange ) {
-      paging.lowRange = payload.page;
+      paging.lowRange = payload.data.page;
     }
 
     state.loading = false;
