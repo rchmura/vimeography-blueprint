@@ -49,7 +49,8 @@ const fetchPage = async (store, nextOrPrevious) => {
     return;
   }
 
-  const pageExceedsLimit = paging.perPage * highestPage > store.state.limit;
+  // const pageExceedsLimit = paging.perPage * highestPage > store.state.limit;
+  const pageExceedsLimit = store.getters.videoOrder.length >= store.state.limit;
 
   if ( pageExceedsLimit && store.state.limit !== 0 ) {
     console.log(`Vimeography: requested range exceeds gallery limit, no request was made.`);
