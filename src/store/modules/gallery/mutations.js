@@ -76,11 +76,11 @@ const mutations = {
 
     paging.page = payload.data.page;
 
-    if ( payload.page > paging.highRange ) {
+    if ( payload.data.page > paging.highRange ) {
       paging.highRange = payload.data.page;
     }
 
-    if ( payload.page < paging.lowRange ) {
+    if ( payload.data.page < paging.lowRange ) {
       paging.lowRange = payload.data.page;
     }
 
