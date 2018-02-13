@@ -1,6 +1,6 @@
 <script>
   /** Theme specific file. */
-  import { mapActions } from 'vuex'
+  import { mapActions, mapState } from 'vuex'
 
   // Import Swiper and modules
   import {
@@ -16,7 +16,7 @@
   require('../../node_modules/swiper/dist/css/swiper.min.css');
 
   const template = `
-    <div class="vimeography-thumbnail-container">
+    <div class="vimeography-thumbnail-container" v-observe-visibility="visibilityChanged">
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <thumbnail
@@ -41,20 +41,33 @@
     },
     methods: {
       ...mapActions([
-        'fetchPage',
+        'paginate',
       ]),
+      reload: function () {
+        setTimeout(function () {
+
+          this.swiper.update();
+          this.swiper.navigation.update();
+          this.swiper.updateSize()
+          this.swiper.updateSlides()
+          this.swiper.updateProgress()
+          this.swiper.updateSlidesClasses()
+
+        }.bind(this), 250)
+      },
+      visibilityChanged: function (isVisible) {
+        if (isVisible) {
+          this.reload();
+        }
+      }
+    },
+    computed: {
+      ...mapState({
+        pro: state => state.gallery.pro
+      }),
     },
     updated: function() {
-      setTimeout(function () {
-
-        this.swiper.update();
-        this.swiper.navigation.update();
-        this.swiper.updateSize()
-        this.swiper.updateSlides()
-        this.swiper.updateProgress()
-        this.swiper.updateSlidesClasses()
-
-      }.bind(this), 250)
+      this.reload();
     },
     watch: {
       activeVideoId(id) {
@@ -114,14 +127,21 @@
 
       /** Note: this should only happen in PRO */
       this.swiper.on('progress', progress => {
+        if (! this.pro) {
+          console.log('Vimeography PRO is not installed, pagination is unavailable.')
+          return;
+        }
+
+        let paging = this.$store.getters.paging
+
         console.log('Vimeography: gallery progress is ' + progress );
 
         if ( progress < 0.25 ) {
-          this.fetchPage( 'previous' );
+          this.paginate( paging.previous );
         }
 
         if ( progress > 0.75 ) {
-          this.fetchPage( 'next' );
+          this.paginate( paging.next );
         }
       } );
 

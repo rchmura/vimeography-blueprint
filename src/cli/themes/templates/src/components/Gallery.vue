@@ -4,15 +4,13 @@
     the template from within the theme for this file?
    */
   import { mapState, mapActions } from 'vuex'
-
-  import Filters from './Filters.vue';
-  import { Player } from 'vimeography-blueprint';
+  import { Player, Filters } from 'vimeography-blueprint';
 
   import ThumbnailContainer from './ThumbnailContainer.vue';
 
   const template = `
     <div class="vimeography-gallery">
-      <filters></filters>
+      <filters v-if="this.pro"></filters>
       <player :activeVideo="this.activeVideo"></player>
       <thumbnail-container :videos="videos" :activeVideoId="this.activeVideo.id"></thumbnail-container>
     </div>
@@ -39,7 +37,8 @@
     computed: {
       ...mapState({
         activeVideo: state => state.videos.items[state.videos.active],
-        galleryId: state => state.gallery.id
+        galleryId: state => state.gallery.id,
+        pro: state => state.gallery.pro
       }),
       videos() {
         return this.$store.getters.videos
