@@ -19,13 +19,11 @@ All of the possible values to use can be found at [this playground example](http
 
 These are some of the more common parameters:
 
-`name`              Name of the video
-`link`              Video ID
-`description`       The description of the video
-`thumbnail_small`   URL to a small version of the video thumbnail
-`thumbnail_medium`  URL to a medium version of the video thumbnail
-`thumbnail_large`   URL to a large version of the video thumbnail
-`thumbnail_huge`    URL to a hi-res version of the video thumbnail
+| Parameter     | Description   |
+| ------------- | ------------- |
+| `name`        | Name of the video |
+| `link`        | Video ID  |
+| `description` | The description of the video |
 
 ## Example DOM Structure
 
