@@ -7,8 +7,12 @@ const mutations = {
   [galleryTypes.LOAD_GALLERY] (state, payload) {
       state.items = payload.video_set;
       state.active = parseInt(payload.activeVideoId);
-      state.order = payload.order;
-      state.filter = payload.filter;
+
+      state.pages = {
+        default: { ...payload.pages.default },
+        filter: { ...payload.pages.filter }
+      }
+
       state.loaded = true;
   },
   [types.LOAD_VIDEO] (state, payload) {
@@ -34,17 +38,29 @@ const mutations = {
 
     if ( payload.data.query ) {
 
-      state.filter = [
-        ...state.filter,
-        ...nextVideoIds
-      ];
+      if ( state.pages.filter[payload.data.page] ) {
+
+        state.pages.filter[payload.data.page] = [
+          ...state.pages.filter[payload.data.page],
+          ...nextVideoIds
+        ]
+
+      } else {
+        Vue.set( state.pages.filter, payload.data.page, [ ...nextVideoIds ] )
+      }
 
     } else {
 
-      state.order = [
-        ...state.order,
-        ...nextVideoIds
-      ];
+      if ( state.pages.default[payload.data.page] ) {
+
+        state.pages.default[payload.data.page] = [
+          ...state.pages.default[payload.data.page],
+          ...nextVideoIds
+        ]
+
+      } else {
+        Vue.set( state.pages.default, payload.data.page, [ ...nextVideoIds ] )
+      }
 
     }
 
@@ -56,7 +72,7 @@ const mutations = {
   },
 
   [galleryTypes.CLEAR_SEARCH] (state, payload) {
-    state.filter = [];
+    state.pages.filter = {};
   },
 
   [galleryTypes.PERFORM_SEARCH] (state, payload) {
@@ -78,9 +94,7 @@ const mutations = {
       ...nextVideos
     };
 
-    state.filter = [
-      ...filteredVideoIds
-    ];
+    Vue.set( state.pages.filter, payload.data.page, [ ...filteredVideoIds ] )
 
     state.loading = false;
 

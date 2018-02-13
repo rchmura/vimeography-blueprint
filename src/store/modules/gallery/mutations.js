@@ -20,6 +20,11 @@ const mutations = {
         perPage: payload.paging.per_page,
         lowRange: payload.paging.page,
         highRange: payload.paging.page,
+        current: payload.paging.page,
+        first: 1,
+        next: payload.paging.page + 1 <= ( Math.ceil( payload.paging.total / payload.paging.per_page ) ) ? payload.paging.page + 1 : null,
+        previous: payload.paging.page - 1 > 0 ? payload.paging.page - 1 : null,
+        last: Math.ceil( payload.paging.total / payload.paging.per_page )
       };
 
       state.paging.filter.perPage = payload.paging.per_page;
@@ -39,6 +44,13 @@ const mutations = {
     state.paging.filter = {
       ...state.paging.filter,
       page: payload.data.page,
+      current: payload.data.page,
+      first: 1,
+
+      next: payload.data.page + 1 <= ( Math.ceil( payload.data.total / payload.data.per_page ) ) ? payload.data.page + 1 : null,
+      previous: payload.data.page - 1 > 0 ? payload.data.page - 1 : null,
+      last: Math.ceil( payload.data.total / payload.data.per_page ),
+
       total: payload.data.total
     }
 
@@ -60,6 +72,11 @@ const mutations = {
     state.paging.filter = {
       ...state.paging.filter,
       page: 1,
+      current: 1,
+      first: 1,
+      previous: null,
+      next: null,
+      last: null,
       highRange: 1,
       lowRange: 1,
       total: 0,
@@ -75,6 +92,9 @@ const mutations = {
     const paging = this.getters.paging;
 
     paging.page = payload.data.page;
+    paging.current = payload.data.page;
+    paging.next = payload.data.page + 1 <= ( Math.ceil( paging.total / paging.perPage ) ) ? payload.data.page + 1 : null
+    paging.previous = payload.data.page - 1 > 0 ? payload.data.page - 1 : null
 
     if ( payload.data.page > paging.highRange ) {
       paging.highRange = payload.data.page;

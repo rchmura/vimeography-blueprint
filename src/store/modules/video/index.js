@@ -5,8 +5,10 @@ import getters from './getters';
 const videos = {
   state: {
     items: {},
-    filter: [],
-    order: [],
+    pages: {
+      default: {},
+      filter: {}
+    },
     loaded: false,
     loading: false,
     active: null,

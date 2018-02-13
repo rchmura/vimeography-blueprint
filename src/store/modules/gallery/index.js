@@ -21,7 +21,12 @@ const gallery = {
         lowRange: 1,
         perPage: 100,
         sort: 'default',
-        total: 0
+        total: 0,
+        current: null,
+        first: 1,
+        next: null,
+        previous: null,
+        last: null
       },
       filter: {
         direction: 'desc',
@@ -31,6 +36,11 @@ const gallery = {
         perPage: 100,
         sort: 'default',
         total: 0,
+        current: null,
+        first: 1,
+        next: null,
+        previous: null,
+        last: null,
         query: ''
       }
     },

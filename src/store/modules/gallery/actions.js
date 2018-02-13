@@ -17,6 +17,93 @@ const advanceGallery = (store, payload) => {
   })
 }
 
+
+/**
+ * Need to rewrite fetchPage to remove the next/previous mechanism
+ * and instead simply provide a page number (first, next, prev, or last)
+ *
+ * Start with a new method, but this can potentially replace the fetchPage method below.
+ *
+ * This will allow us to easily check if we already have the page in cache.
+ *
+ * @param  {[type]} store [description]
+ * @param  {[type]} page  [description]
+ * @return {[type]}       [description]
+ */
+const paginate = async (store, pageNumber) => {
+  if (pageNumber === null) return
+
+  const paging = store.getters.paging
+  const loadedPages = store.getters.getLoadedPageNumbers
+
+  if ( loadedPages.includes(pageNumber) ) {
+    // switch to page that already exists in cache
+    store.commit({
+      type: types.FETCH_PAGE_SUCCESS,
+      data: {
+        page: pageNumber,
+        current: pageNumber,
+        video_set: []
+      }
+    })
+
+    return
+  }
+
+  if ( ! store.state.loading ) {
+
+    const payload = {
+      gallery_id: store.state.id,
+      source: store.state.source,
+      limit: store.state.limit,
+      page: pageNumber,
+      per_page: paging.perPage,
+      direction: paging.direction,
+      sort: paging.sort
+    };
+
+    if (paging.query) {
+      delete payload.gallery_id;
+      payload.query = paging.query;
+    }
+
+    store.commit({
+      type: types.FETCH_PAGE,
+      ...payload
+    });
+
+    try {
+      const response = await axios.get(store.state.settings.xhr.ajax_url, {
+        params: {
+          action: 'vimeography_pro_request',
+          nonce: store.state.settings.xhr.nonce,
+          payload
+        }
+      })
+
+      store.commit({
+        type: types.FETCH_PAGE_SUCCESS,
+        ...response,
+        data: {
+          ...payload,
+          ...response.data,
+        }
+      })
+    } catch (e) {
+      store.commit({
+        type: types.FETCH_PAGE_FAILURE,
+        message: e.message,
+        ...payload
+      });
+    }
+
+  }
+
+  return;
+}
+
+
+// Deprecated, kept around for reference
 const fetchPage = async (store, nextOrPrevious) => {
 
   const paging = store.getters.paging;
@@ -158,4 +245,5 @@ export default {
   fetchPage,
   advanceGallery,
   performSearch,
+  paginate
 };
