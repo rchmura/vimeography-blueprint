@@ -143,7 +143,7 @@ gulp.task('inserting template data', ['requesting more information'], function (
 gulp.task('copying template files', function () {
   gutil.log( gutil.colors.green('Generating a new Vimeography theme called ' + argv.name.toUpperCase() + '…') );
 
-  return gulp.src("./templates/**/*")
+  return gulp.src("./templates/**/*", { dot: true })
     .pipe(rename(function (path) {
       path.basename = path.basename.replace(/blueprint/g, argv.name);
     }))
