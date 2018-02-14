@@ -3,14 +3,17 @@ import * as types from './types';
 const mutations = {
   [types.LOAD_GALLERY] (state, payload) {
 
-      state.id = payload.id;
-      state.theme = payload.theme;
-      state.version = payload.version;
-      state.settings = payload.settings;
-      state.tags = payload.tags;
-      state.source = payload.source;
-      state.limit = payload.limit;
-      state.pro = payload.pro;
+    state.id = payload.id;
+    state.theme = payload.theme;
+    state.version = payload.version;
+    state.source = payload.source;
+    state.limit = payload.limit;
+
+    state.pro = payload.pro || false;
+    state.settings = payload.settings || {};
+    state.tags = payload.tags || {};
+
+    if (payload.paging) {
 
       state.paging.default = {
         sort: payload.paging.sort,
@@ -27,9 +30,7 @@ const mutations = {
         last: Math.ceil( payload.paging.total / payload.paging.per_page )
       };
 
-      state.paging.filter.perPage = payload.paging.per_page;
-
-      // state.paging.filter = payload.filter;
+    }
   },
 
   [types.PERFORM_SEARCH] (state, payload) {
