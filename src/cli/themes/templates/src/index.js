@@ -31,7 +31,7 @@ const render = (Component, galleryId, store) => {
 
   const mount = '#vimeography-gallery-' + galleryId + ' > div';
   const gallery = window.vimeography2.galleries.<%= name.toLowerCase() %>[galleryId];
-  const firstVideoId = head( gallery.order );
+  const firstVideoId = head( gallery.pages.default[Object.keys(gallery.pages.default)[0]] );
   const activeVideoId = params.get('vimeography_video') && params.get('vimeography_gallery') == galleryId ? parseInt( params.get('vimeography_video') ) : parseInt( firstVideoId );
 
   store.commit({
