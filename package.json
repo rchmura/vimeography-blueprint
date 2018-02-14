@@ -45,6 +45,7 @@
     "@vimeo/player": "^2.2.0",
     "axios": "^0.17.0",
     "lodash": "^4.17.5",
+    "vue-feather-icon": "^1.2.0",
     "vue-simple-spinner": "^1.2.8"
   }
 }
