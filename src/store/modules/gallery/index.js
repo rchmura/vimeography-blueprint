@@ -17,12 +17,12 @@ const gallery = {
       default: {
         direction: 'desc',
         page: 1,
+        current: 1,
         highRange: 1,
         lowRange: 1,
         perPage: 100,
         sort: 'default',
         total: 0,
-        current: null,
         first: 1,
         next: null,
         previous: null,
