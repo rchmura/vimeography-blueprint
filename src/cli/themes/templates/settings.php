@@ -37,6 +37,9 @@
  *   - `attribute` defines the CSS property that this setting will
  *      control for the corresponding target selector.
  *
+ *   - `transform` (optional) allows you to provide a string with a {{value}} token
+ *      to define where the resulting pixel value should be injected in the generated CSS string value.
+ *
  * 'expressions' - optional
  * Defines additional CSS selectors and properties that the setting will control,
  * but this time, relatively manipulating the value before associating it with the
