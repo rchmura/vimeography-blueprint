@@ -73,104 +73,41 @@
  *
  * @var array
  */
-$settings = array(
-  array(
-    'type'       => 'colorpicker',
-    'label'      => __('Thumbnail Background Color'),
-    'id'         => 'thumbnail-background-color',
-    'value'      => '#4c4c4c',
-    'pro'        => FALSE,
-    'namespace'  => TRUE,
-    'properties' =>
-      array(
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail-container a', 'attribute' => 'backgroundColor'),
-      )
-  ),
-  array(
-    'type'       => 'colorpicker',
-    'label'      => __('Video Title Color'),
-    'id'         => 'video-title-color',
-    'value'      => '#f4f4f4',
-    'pro'        => FALSE,
-    'namespace'  => TRUE,
-    'properties' =>
-      array(
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail-container span', 'attribute' => 'color'),
-      )
-  ),
-  array(
-    'type'       => 'colorpicker',
-    'label'      => __('Paging Control Color'),
-    'id'         => 'paging-control-color',
-    'value'      => '#f4f4f4',
-    'pro'        => TRUE,
-    'namespace'  => TRUE,
-    'properties' =>
-      array(
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-paging-controls a', 'attribute' => 'color'),
-      )
-  ),
-  array(
-    'type'       => 'colorpicker',
-    'label'      => __('Paging Control Text Color'),
-    'id'         => 'paging-control-text-color',
-    'value'      => '#222222',
-    'pro'        => TRUE,
-    'namespace'  => TRUE,
-    'properties' =>
-      array(
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-paging-controls > span', 'attribute' => 'color'),
-      )
-  ),
-  array(
-    'type'       => 'colorpicker',
-    'label'      => __('Paging Loader Color'),
-    'id'         => 'loader-color',
-    'value'      => '#000000',
-    'pro'        => TRUE,
-    'namespace'  => TRUE,
-    'important'  => TRUE,
-    'properties' =>
-      array(
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-spinner div div', 'attribute' => 'backgroundColor'),
-      )
-  ),
-  array(
-    'type'       => 'slider',
-    'label'      => __('Thumbnail Box Size'),
-    'id'         => 'thumbnail-box-size',
-    'value'      => '130',
-    'min'        => '100',
-    'max'        => '300',
-    'step'       => '10',
-    'pro'        => TRUE,
-    'namespace'  => TRUE,
-    'properties' =>
-      array(
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail-container', 'attribute' => 'width'),
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail-container a', 'attribute' => 'width'),
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail-container a', 'attribute' => 'height'),
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail', 'attribute' => 'width'),
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail', 'attribute' => 'height'),
-      ),
-    'expressions' =>
-      array(
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail img', 'attribute' => 'maxWidth', 'operator' => '*', 'value' => '1.77'),
-      )
-  ),
-  array(
-    'type'       => 'numeric',
-    'label'      => __('Thumbnail Spacing'),
-    'id'         => 'thumbnail-spacing',
-    'value'      => '5',
-    'min'        => '5',
-    'max'        => '20',
-    'step'       => '1',
-    'pro'        => TRUE,
-    'namespace'  => TRUE,
-    'properties' =>
-      array(
-        array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail-container', 'attribute' => 'margin'),
-      )
-  ),
-);
+  $settings = array(
+    array(
+      'type'       => 'colorpicker',
+      'label'      => __('Inactive Thumbnail Border Color'),
+      'id'         => 'inactive-thumbnail-border-color',
+      'value'      => '#cccccc',
+      'pro'        => false,
+      'namespace'  => true,
+      'properties' =>
+        array(
+          array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail-container .vimeography-link', 'attribute' => 'borderColor'),
+        )
+    ),
+    array(
+      'type'       => 'colorpicker',
+      'label'      => __('Active Thumbnail Border Color'),
+      'id'         => 'active-thumbnail-border-color',
+      'value'      => '#5580e6',
+      'pro'        => false,
+      'namespace'  => true,
+      'properties' =>
+        array(
+          array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail-container .vimeography-link.vimeography-link-active', 'attribute' => 'borderColor'),
+        )
+    ),
+    array(
+      'type'       => 'colorpicker',
+      'label'      => __('Spinner Color'),
+      'id'         => 'spinner-color',
+      'value'      => '#0077dd',
+      'pro'        => false,
+      'namespace'  => true,
+      'properties' =>
+        array(
+          array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-player:before', 'attribute' => 'borderTopColor'),
+        )
+    ),
+  );
