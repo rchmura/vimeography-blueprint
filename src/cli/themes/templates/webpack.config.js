@@ -35,11 +35,11 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
-      exclude: /node_modules/,
+      exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
       loader: 'babel-loader',
 
       options: {
-        presets: ['env']
+        presets: ['@babel/preset-env']
       }
     },
     {
