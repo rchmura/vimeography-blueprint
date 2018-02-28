@@ -31,6 +31,8 @@ let params = new URLSearchParams(location.search.slice(1));
  */
 const render = (Component, galleryId, store) => {
 
+  // We use concatenation here so Vimeography Blueprint doesn't get confused
+  // with this line when generating new themes.
   const mount = '#vimeography-gallery-' + galleryId + ' > div';
   const gallery = window.vimeography2.galleries.<%= name.toLowerCase() %>[galleryId];
   const firstVideoId = head( gallery.pages.default[Object.keys(gallery.pages.default)[0]] );
