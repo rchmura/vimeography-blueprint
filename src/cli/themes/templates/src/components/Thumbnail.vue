@@ -38,7 +38,7 @@ const Thumbnail = {
 export default Thumbnail;
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .vimeography-thumbnail {
     margin: 0;
     max-width: 200px;
