@@ -4,6 +4,7 @@
     the template from within the theme for this file?
    */
   import { mapState, mapActions } from 'vuex'
+  
   import { Player, Filters } from 'vimeography-blueprint';
 
   import ThumbnailContainer from './ThumbnailContainer.vue';
@@ -21,7 +22,7 @@
     template,
     methods: {
       ...mapActions([
-        'loadVideo',
+        'loadVideo'
       ]),
     },
     watch: {
@@ -41,7 +42,7 @@
         pro: state => state.gallery.pro
       }),
       videos() {
-        return this.$store.getters.videos
+        return this.$store.getters.getVideos
       }
     },
     components: {

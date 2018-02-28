@@ -41,7 +41,7 @@
     },
     methods: {
       ...mapActions([
-        'paginate',
+        'paginate'
       ]),
       reload: function () {
         setTimeout(function () {
@@ -151,7 +151,7 @@
   export default ThumbnailContainer;
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .vimeography-thumbnail-container {
     position: relative;
   }
