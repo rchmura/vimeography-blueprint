@@ -8,5 +8,6 @@
 export Player from './components/Player.vue';
 export Search from './components/Search.vue';
 export Filters from './components/Filters.vue';
-// export store from './store';
+
+export PagingControls from './components/Paging'
 export storeModules from './store';
