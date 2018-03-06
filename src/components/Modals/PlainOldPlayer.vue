@@ -69,4 +69,20 @@
       stroke: #fff;
     }
   }
+
+  .vimeography-downloads {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: -2rem;
+
+    a {
+      background: #222225;
+      padding: 0.35rem 1rem;
+      border-radius: 1rem;
+      color: #2e99ea;
+      box-shadow: none;
+      font-size: 0.9rem;
+    }
+  }
 </style>
