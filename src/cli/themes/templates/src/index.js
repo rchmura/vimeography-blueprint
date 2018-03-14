@@ -9,6 +9,8 @@ Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(VueObserveVisibility);
 
+Vue.config.devtools = true
+
 import Gallery from './components/Gallery.vue';
 import { storeModules } from 'vimeography-blueprint';
 
