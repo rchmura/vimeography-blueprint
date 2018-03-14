@@ -40,7 +40,7 @@
         const videoId = to.query.vimeography_video;
         const gallery = to.query.vimeography_gallery;
 
-        if (videoId && gallery && parseInt(gallery) === this.galleryId) {
+        if (videoId && gallery && gallery == this.galleryId) {
           this.$modal.show(this.modalId);
           this.loadVideo(videoId)
         }
@@ -50,7 +50,7 @@
       const videoId = this.$route.query.vimeography_video;
       const gallery = this.$route.query.vimeography_gallery;
 
-      if (videoId && gallery && parseInt(gallery) === this.galleryId) {
+      if (videoId && gallery && gallery == this.galleryId) {
         this.$modal.show(this.modalId);
         this.loadVideo(videoId)
       }
