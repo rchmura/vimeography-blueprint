@@ -9,7 +9,7 @@ const defaultTemplate = `
   </figure>
 `;
 
-const userTemplate = document.querySelector('#vimeography-harvestone-thumbnail');
+const userTemplate = document.querySelector('#vimeography-<%= name.toLowerCase() %>-thumbnail');
 
 const Thumbnail = {
   props: ['video'],
