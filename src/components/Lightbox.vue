@@ -1,5 +1,7 @@
 <script>
   import { mapState, mapActions } from 'vuex'
+  import get from 'lodash/get';
+
   import {
     ModernTouch,
     PlainOldPlayer
@@ -60,7 +62,7 @@
         activeVideo: state => state.videos.items[state.videos.active],
         activeTheme: state => state.gallery.theme,
         galleryId: state => state.gallery.id,
-        allowDownloads: state => state.gallery.settings.downloads.enabled
+        allowDownloads: state => get(state, 'gallery.settings.downloads.enabled')
       }),
       nextVideoUrl() {
         const nextVideoId = this.$store.getters.getAdjacentVideoId(this.activeVideo.id);
