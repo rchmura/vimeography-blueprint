@@ -8,7 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  devtool: isProduction ? 'cheap-module-source-map' : 'inline-source-map',
+  devtool: isProduction ? 'cheap-module-source-map' : 'eval-source-map',
   devServer: {
     publicPath: 'http://localhost:8080/',
     contentBase: './dist',
