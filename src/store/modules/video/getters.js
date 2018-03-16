@@ -1,4 +1,5 @@
 import flattenDeep from 'lodash/flattenDeep';
+import get from 'lodash/get';
 
 const getVideoId = (state, getters) => (video) => {
   return video.uri.replace(/\D/g,'')
@@ -17,7 +18,7 @@ const getAdjacentVideoId = (state, getters) => (id) => {
   const order = getters.getVideoOrder;
   const index = order.indexOf(id) + 1;
   const adjacentVideoId = order[index];
-  return state.items[adjacentVideoId].id;
+  return get(state.items[adjacentVideoId], 'id');
 }
 
 const getVideos = (state, getters) => {
