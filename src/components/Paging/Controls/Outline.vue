@@ -3,7 +3,7 @@
   import { mapState, mapActions } from 'vuex'
 
   const template = `
-    <div>
+    <div v-if="shouldShowPagingControls">
       <spinner size="small" v-show="this.loading"></spinner>
       <div class="vimeography-paging">
         <div class="vimeography-paging-icon" v-bind:class="{ 'vimeography-paging-disabled': !paging.first }" v-on:click="paginate( paging.first )">
@@ -50,6 +50,9 @@
         pro: state => state.gallery.pro,
         loading: state => state.videos.loading
       }),
+      shouldShowPagingControls() {
+        return this.pro && this.paging.last > 1;
+      },
       paging() {
         return this.$store.getters.paging
       }
