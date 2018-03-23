@@ -19,7 +19,15 @@
         return this.allowDownloads && data.video.download
       },
       link(data) {
-        return data.video.download.filter( d => d.quality == "hd" )[0].link || null
+        let bestAvailable;
+
+        bestAvailable = data.video.download.find( d => d.quality == 'hd' )
+
+        if ( bestAvailable == undefined ) {
+          bestAvailable = data.video.download.find( d => d.quality == 'source' )
+        }
+
+        return bestAvailable.link
       },
     },
   }
