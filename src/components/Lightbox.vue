@@ -1,6 +1,5 @@
 <script>
   import { mapState, mapActions } from 'vuex'
-  import get from 'lodash/get';
 
   import {
     ModernTouch,
@@ -20,8 +19,6 @@
           :is="layout"
           :modalId="this.modalId"
           :activeVideo="this.activeVideo"
-          :allowDownloads="this.allowDownloads"
-          :downloadLink="this.downloadLink"
           :nextVideoUrl="this.nextVideoUrl">
         </component>
       </modal>
@@ -62,7 +59,6 @@
         activeVideo: state => state.videos.items[state.videos.active],
         activeTheme: state => state.gallery.theme,
         galleryId: state => state.gallery.id,
-        allowDownloads: state => get(state, 'gallery.settings.downloads.enabled')
       }),
       nextVideoUrl() {
         const nextVideoId = this.$store.getters.getAdjacentVideoId(this.activeVideo.id);
@@ -77,13 +73,6 @@
       },
       modalId() {
         return 'vimeography-' + this.activeTheme + '-' + this.galleryId
-      },
-      downloadLink() {
-        if (this.activeVideo.download) {
-          return this.activeVideo.download.filter( d => d.quality == "hd" )[0].link || null
-        } else {
-          return null
-        }
       },
       tags() {
         return this.activeVideo.tags.map(tag => tag.name).join(', ')

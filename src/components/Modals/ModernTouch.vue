@@ -2,6 +2,7 @@
   import { mapState, mapActions } from 'vuex'
 
   import Player from '../Player.vue';
+  import DownloadLink from '../DownloadLink.vue'
 
   const template = `
     <div class="vimeography-modal-modern-touch">
@@ -23,9 +24,9 @@
 
       <div class="vimeography-description" v-html="activeVideo.description">
       </div>
-      <div class="vimeography-downloads" v-if="allowDownloads">
-        <a :href="downloadLink" :title="'Download' + activeVideo.name">Download this video</a>
-      </div>
+
+      <download-link :video="activeVideo"></download-link>
+
       <span class="vimeography-plays" v-if="activeVideo.stats.plays">({{activeVideo.stats.plays}} views) </span>
       <span class="vimeography-tags" v-if="this.tags.length > 0">Filed under {{this.tags}}</span>
     </div>
@@ -35,14 +36,13 @@
     name: 'modern-touch',
     props: [
       'activeVideo',
-      'allowDownloads',
-      'downloadLink',
       'modalId',
       'nextVideoUrl'
     ],
     template,
     components: {
-      Player
+      Player,
+      DownloadLink
     },
     computed: {
       tags() {

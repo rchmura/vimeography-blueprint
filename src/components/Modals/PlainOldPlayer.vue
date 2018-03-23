@@ -2,6 +2,7 @@
   import { mapState, mapActions } from 'vuex'
 
   import Player from '../Player.vue';
+  import DownloadLink from '../DownloadLink.vue'
 
   const template = `
     <div class="vimeography-plain-old-player">
@@ -11,9 +12,7 @@
 
       <player :activeVideo="activeVideo"></player>
 
-      <div class="vimeography-downloads" v-if="allowDownloads">
-        <a :href="downloadLink" :title="'Download' + activeVideo.name">Download this video</a>
-      </div>
+      <download-link :video="activeVideo"></download-link>
     </div>
   `;
 
@@ -21,13 +20,12 @@
     name: 'plain-old-player',
     props: [
       'activeVideo',
-      'allowDownloads',
-      'downloadLink',
       'modalId'
     ],
     template,
     components: {
-      Player
+      Player,
+      DownloadLink
     }
   }
 
@@ -70,7 +68,7 @@
     }
   }
 
-  .vimeography-downloads {
+  /deep/ .vimeography-download {
     position: absolute;
     width: 100%;
     text-align: center;
