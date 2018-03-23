@@ -1,5 +1,6 @@
 <script>
 import { mapState } from 'vuex'
+import { Mixins } from 'vimeography-blueprint'
 
 const defaultTemplate = `
   <figure class="swiper-slide vimeography-thumbnail">
@@ -13,6 +14,7 @@ const userTemplate = document.querySelector('#vimeography-<%= name.toLowerCase()
 
 const Thumbnail = {
   props: ['video'],
+  mixins: [Mixins.Thumbnail],
   template: userTemplate ? userTemplate.innerText : defaultTemplate,
   computed: {
     query() {
@@ -23,11 +25,6 @@ const Thumbnail = {
       };
 
       return '?' + Object.keys(q).map(k => k + '=' + encodeURIComponent(q[k])).join('&')
-    },
-    thumbnailUrl: (data) => {
-      const selections = data.video.pictures.sizes.filter(img => img.width <= 640)
-      const sorted = selections.sort( (a, b) => a.width - b.width )
-      return sorted[sorted.length - 1].link
     },
     ...mapState({
       galleryId: state => state.id
