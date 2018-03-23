@@ -1,8 +1,7 @@
-/**
- *  Point of contact for Vimeography mixins
- *
- *  ie: import { thumbnailMixin } from './mixins';
- *
- */
+import Thumbnail from './thumbnail/';
 
-export thumbnailMixin from './thumbnail/';
+const Mixins = {
+  Thumbnail,
+};
+
+export default Mixins;

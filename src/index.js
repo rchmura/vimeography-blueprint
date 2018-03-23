@@ -12,3 +12,4 @@ export Filters from './components/Filters.vue';
 
 export PagingControls from './components/Paging'
 export storeModules from './store';
+export Mixins from './mixins';
