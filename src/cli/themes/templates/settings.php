@@ -83,7 +83,7 @@
       'namespace'  => true,
       'properties' =>
         array(
-          array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail-container .vimeography-link', 'attribute' => 'borderColor'),
+          array('target' => '.vimeography-theme-<%= name.toLowerCase() %> .vimeography-thumbnail-container .vimeography-link', 'attribute' => 'borderColor'),
         )
     ),
     array(
@@ -95,7 +95,7 @@
       'namespace'  => true,
       'properties' =>
         array(
-          array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-thumbnail-container .vimeography-link.vimeography-link-active', 'attribute' => 'borderColor'),
+          array('target' => '.vimeography-theme-<%= name.toLowerCase() %> .vimeography-thumbnail-container .vimeography-link.vimeography-link-active', 'attribute' => 'borderColor'),
         )
     ),
     array(
@@ -107,7 +107,7 @@
       'namespace'  => true,
       'properties' =>
         array(
-          array('target' => '.vimeography-<%= name.toLowerCase() %> .vimeography-player:before', 'attribute' => 'borderTopColor'),
+          array('target' => '.vimeography-theme-<%= name.toLowerCase() %> .vimeography-player:before', 'attribute' => 'borderTopColor'),
         )
     ),
   );
