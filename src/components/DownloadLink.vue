@@ -19,15 +19,20 @@
         return this.allowDownloads && data.video.download
       },
       link(data) {
-        let bestAvailable;
 
-        bestAvailable = data.video.download.find( d => d.quality == 'hd' )
-
-        if ( bestAvailable == undefined ) {
-          bestAvailable = data.video.download.find( d => d.quality == 'source' )
+        if ( data.video.download == undefined ) {
+          return '#'
         }
 
-        return bestAvailable.link
+        // Check for best available HD download first.
+        let hd = data.video.download.filter( d => d.quality == 'hd' ).sort( (a, b) => b.width - a.width )
+
+        if ( hd.length > 0 ) {
+          return hd[0].link
+        }
+
+        // Otherwise, return source video file
+        return data.video.download.find( d => d.quality == 'source' ).link
       },
     },
   }
