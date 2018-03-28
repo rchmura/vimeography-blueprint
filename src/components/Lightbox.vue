@@ -10,9 +10,11 @@
     <div class="vimeography-lightbox">
       <modal
         :name="this.modalId"
-        width="50%"
-        height="auto"
+        :max-width="800"
         :scrollable="true"
+        :adaptive="true"
+        width="90%"
+        height="auto"
         classes="vimeography-modal"
       >
         <component
