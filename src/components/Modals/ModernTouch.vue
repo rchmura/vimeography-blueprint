@@ -60,7 +60,7 @@
     text-align: left;
     border-radius: 3px;
     box-shadow: 0 20px 60px -2px rgba(27, 33, 58, .4);
-    padding: 50px;
+    padding: 30px;
     transition: top 0.2s ease;
   }
 
@@ -119,5 +119,11 @@
     line-height: 1.5em;
     display: inline-block;
     margin: 0;
+  }
+
+  @media screen and (min-width: 550px) {
+    .vimeography-modal-modern-touch {
+      padding: 50px;
+    }
   }
 </style>
