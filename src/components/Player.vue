@@ -18,7 +18,12 @@
     name: 'Player',
     props: ['activeVideo'],
     mounted: function() {
-      this.player = new VimeoPlayer(this.$refs.player, { id: this.activeVideo.id, responsive: true, speed: true });
+      this.player = new VimeoPlayer(this.$refs.player, {
+        id: this.activeVideo.id,
+        responsive: true,
+        speed: true,
+        playsinline: false
+      });
 
       this.player.on('ended', data => { 
         this.playerEnded(data)
