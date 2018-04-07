@@ -4,7 +4,7 @@ import Spinner from 'vue-simple-spinner'
 
 import debounce from 'lodash/debounce';
 
-const template = `
+const defaultTemplate = `
   <label :class="$style.container">
     <span :class="$style.text">Search:</span>
     <input :class="$style.input" name="search" type="text" placeholder="Search videos…" v-on:input="debounceInput" />
@@ -18,8 +18,10 @@ const template = `
   </label>
 `;
 
+const userTemplate = document.querySelector('#vimeography-component-search');
+
 const Search = {
-  template,
+  template: userTemplate ? userTemplate.innerText : defaultTemplate,
   components: {
     Spinner
   },
