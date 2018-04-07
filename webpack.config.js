@@ -15,7 +15,10 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        exclude : /node_modules/
+        exclude: /node_modules/,
+        options: {
+          postcss: [require('postcss-cssnext')()]
+        }
       },
       {
         test: /\.js$/,
