@@ -1,4 +1,6 @@
 <script>
+  require('es6-object-assign/auto'); // for IE11 when use vue-js-modal
+
   import { mapState, mapActions } from 'vuex'
 
   import {
