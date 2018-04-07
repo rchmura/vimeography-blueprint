@@ -10,5 +10,5 @@
     }],
     "@babel/preset-stage-0"
   ],
-  "plugins": ["@babel/plugin-transform-runtime"]
+  "plugins": ["@babel/plugin-transform-runtime", "@babel/plugin-transform-object-assign"]
 }
