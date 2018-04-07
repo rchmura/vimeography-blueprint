@@ -36,11 +36,7 @@ module.exports = {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
-      loader: 'babel-loader',
-
-      options: {
-        presets: ['@babel/preset-env']
-      }
+      loader: 'babel-loader'
     },
     {
       test: /\.vue$/,
