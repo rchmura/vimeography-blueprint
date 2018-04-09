@@ -8,7 +8,7 @@
     PlainOldPlayer
   } from './Modals';
 
-  const template = `
+  const defaultTemplate = `
     <div class="vimeography-lightbox">
       <modal
         :name="this.modalId"
@@ -29,10 +29,12 @@
     </div>
   `;
 
+  const userTemplate = document.querySelector('#vimeography-component-lightbox');
+
   const Lightbox = {
     name: 'lightbox',
     props: ['layout'],
-    template,
+    template: userTemplate ? userTemplate.innerText : defaultTemplate,
     methods: {
       ...mapActions([
         'loadVideo',
