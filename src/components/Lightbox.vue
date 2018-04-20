@@ -15,6 +15,7 @@
         :max-width="800"
         :scrollable="true"
         :adaptive="true"
+        :reset="true"
         width="90%"
         height="auto"
         classes="vimeography-modal"
