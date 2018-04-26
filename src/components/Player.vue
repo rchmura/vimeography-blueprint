@@ -91,7 +91,7 @@
             const height = dimensions[1];
             const ratio = (height / width) * 100;
 
-            this.$refs.player.firstChild.style.paddingBottom = `${ratio}%`;
+            this.$refs.player.firstChild.style.padding = `${ratio}% 0 0 0`;
           });
 
           if ( this.playlistEnabled ) {
@@ -149,6 +149,10 @@
       border: 1px solid #ccc;
       border-top-color: #07d;
       animation: spinner .6s linear infinite;
+    }
+
+    > div {
+      transition: padding 100ms ease-in;
     }
   }
 
