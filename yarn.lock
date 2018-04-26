@@ -544,12 +544,6 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.44"
 
-"@babel/plugin-transform-object-assign@^7.0.0-beta.44":
-  version "7.0.0-beta.44"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-object-assign/-/plugin-transform-object-assign-7.0.0-beta.44.tgz#96881dd11daf77a0fb71137921650b86b8a0e5bb"
-  dependencies:
-    "@babel/helper-plugin-utils" "7.0.0-beta.44"
-
 "@babel/plugin-transform-object-super@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-object-super/-/plugin-transform-object-super-7.0.0-beta.44.tgz#3c1688a7b38c4de8af269ff5c618cfd602864a39"
@@ -5931,6 +5925,10 @@ vue-loader@^13.0.0:
     vue-hot-reload-api "^2.2.0"
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
+
+vue-select@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/vue-select/-/vue-select-2.4.0.tgz#ef06547fe857f3259841ab2f3d29c5d8a1e52630"
 
 vue-simple-spinner@^1.2.8:
   version "1.2.8"
