@@ -18,6 +18,9 @@
     name: 'Player',
     props: ['activeVideo'],
     mounted: function() {
+      const isModal = typeof this.$modal !== "undefined";
+      const autoplay = isModal;
+
       this.player = new VimeoPlayer(this.$refs.player, {
         id: this.activeVideo.id,
         responsive: true,
