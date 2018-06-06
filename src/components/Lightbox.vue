@@ -16,6 +16,7 @@
         :scrollable="true"
         :adaptive="true"
         :reset="true"
+        @closed="clearRoute"
         width="90%"
         height="auto"
         classes="vimeography-modal"
@@ -40,6 +41,9 @@
       ...mapActions([
         'loadVideo',
       ]),
+      clearRoute (event) {
+        this.$router.push('/');
+      },
     },
     watch: {
       '$route' (to, from) {
