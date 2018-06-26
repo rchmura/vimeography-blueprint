@@ -31,8 +31,22 @@
           return hd[0].link
         }
 
-        // Otherwise, return source video file
-        return data.video.download.find( d => d.quality == 'source' ).link
+        // Second, attempt to return source video file
+        let source = data.video.download.find( d => d.quality == 'source' );
+
+        if ( typeof source !== 'undefined' ) {
+          return source.link;
+        }
+
+        // Last resort, check for best available SD download first.
+        let sd = data.video.download.filter( d => d.quality == 'sd' ).sort( (a, b) => b.width - a.width )
+
+        if ( sd.length > 0 ) {
+          return sd[0].link;
+        }
+
+        // No luck, sorry
+        return "#";
       },
     },
   }
