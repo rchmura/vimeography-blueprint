@@ -42,7 +42,7 @@
         'loadVideo',
       ]),
       clearRoute (event) {
-        this.$router.push('/');
+        this.$router.push(window.location.pathname);
       },
     },
     watch: {
