@@ -23,16 +23,16 @@
 
       this.player = new VimeoPlayer(this.$refs.player, {
         id: this.activeVideo.id,
-        responsive: true,
-        speed: true,
-        playsinline: false
+        transparent: this.playerSettings.transparent,
+        speed: this.playerSettings.speed,
+        playsinline: this.playerSettings.playsinline
       });
 
       this.player.on('ended', data => { 
         this.playerEnded(data)
 
         if ( this.playlistEnabled ) {
-          const endedVideoId =this.activeVideo.id;
+          const endedVideoId = this.activeVideo.id;
           const nextVideoId = this.$store.getters.getAdjacentVideoId(endedVideoId);
           
           const query = {
@@ -64,6 +64,18 @@
       ...mapState({
         galleryId: state => state.gallery.id,
         playlistEnabled: state => state.gallery.settings.playlist.enabled,
+        playerSettings: state => {
+
+          if (typeof state.gallery.settings.player == 'undefined') {
+            return {
+              transparent: true,
+              speed: true,
+              playsinline: false
+            };
+          }
+
+          return state.gallery.settings.player;
+        },
       }),
     },
     methods: {
