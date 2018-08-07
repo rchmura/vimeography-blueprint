@@ -173,6 +173,10 @@
     > div {
       transition: padding 100ms ease-in;
     }
+
+    >>> iframe {
+      position: relative;
+    }
   }
 
   @keyframes spinner {
