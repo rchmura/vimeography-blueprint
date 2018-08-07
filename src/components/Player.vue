@@ -97,19 +97,21 @@
         this.player.loadVideo(videoId).then( id => {
           // the video successfully loaded
 
-          /**
-           * Determine the player aspect ratio and adjust the wrapper accordingly.
-           *
-           * @param  {[type]} dimensions [description]
-           * @return {[type]}            [description]
-           */
-          Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then( dimensions => {
-            const width = dimensions[0];
-            const height = dimensions[1];
-            const ratio = (height / width) * 100;
+          if ( this.playerSettings.responsive ) {
+            /**
+             * Determine the player aspect ratio and adjust the wrapper accordingly.
+             *
+             * @param  {[type]} dimensions [description]
+             * @return {[type]}            [description]
+             */
+            Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then( dimensions => {
+              const width = dimensions[0];
+              const height = dimensions[1];
+              const ratio = (height / width) * 100;
 
-            this.$refs.player.firstChild.style.padding = `${ratio}% 0 0 0`;
-          });
+              this.$refs.player.firstChild.style.padding = `${ratio}% 0 0 0`;
+            });
+          }
 
           if ( this.playlistEnabled ) {
             this.player.play();
