@@ -742,11 +742,11 @@
     to-fast-properties "^2.0.0"
 
 "@vimeo/player@^2.2.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@vimeo/player/-/player-2.5.0.tgz#1d359274a56973ce7b10684ecfd44ece267b79c3"
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@vimeo/player/-/player-2.6.3.tgz#f1b88f75a7ddb79f2fa8cfc4ea89e628caabafbd"
   dependencies:
-    es6-collections "0.5.6"
     native-promise-only "0.8.1"
+    weakmap-polyfill "2.0.0"
 
 abbrev@1:
   version "1.1.1"
@@ -1979,10 +1979,6 @@ es-to-primitive@^1.1.1:
     is-callable "^1.1.1"
     is-date-object "^1.0.1"
     is-symbol "^1.0.1"
-
-es6-collections@0.5.6:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/es6-collections/-/es6-collections-0.5.6.tgz#5552e800ad12c1820cda2bd4a79ae7dbb03d89a2"
 
 es6-object-assign@^1.1.0:
   version "1.1.0"
@@ -5973,6 +5969,10 @@ wbuf@^1.1.0, wbuf@^1.7.2:
   resolved "https://registry.yarnpkg.com/wbuf/-/wbuf-1.7.2.tgz#d697b99f1f59512df2751be42769c1580b5801fe"
   dependencies:
     minimalistic-assert "^1.0.0"
+
+weakmap-polyfill@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/weakmap-polyfill/-/weakmap-polyfill-2.0.0.tgz#8f28f935e3853896ad40747e5258db578d9dc8de"
 
 webpack-dev-middleware@^1.11.0:
   version "1.12.0"
