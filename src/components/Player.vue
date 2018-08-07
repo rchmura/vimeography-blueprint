@@ -24,6 +24,7 @@
       this.player = new VimeoPlayer(this.$refs.player, {
         id: this.activeVideo.id,
         transparent: this.playerSettings.transparent,
+        responsive: this.playerSettings.responsive,
         speed: this.playerSettings.speed,
         playsinline: this.playerSettings.playsinline
       });
@@ -68,6 +69,7 @@
 
           if (typeof state.gallery.settings.player == 'undefined') {
             return {
+              responsive: true,
               transparent: true,
               speed: true,
               playsinline: false
