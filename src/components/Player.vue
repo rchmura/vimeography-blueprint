@@ -177,6 +177,10 @@
     >>> iframe {
       position: relative;
     }
+
+    >>> .fluid-width-video-wrapper iframe {
+      position: absolute;
+    }
   }
 
   @keyframes spinner {
