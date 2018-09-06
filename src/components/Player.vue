@@ -114,7 +114,9 @@
           }
 
           if ( this.playlistEnabled ) {
-            this.player.play();
+            setTimeout(() => {
+              this.player.play();
+            }, 500);
           }
 
         }).catch( error => {
