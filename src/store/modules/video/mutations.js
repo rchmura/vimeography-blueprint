@@ -98,6 +98,10 @@ const mutations = {
 
     state.loading = false;
 
+  },
+
+  [galleryTypes.PERFORM_SEARCH_FAILURE] (state, payload) {
+    state.loading = false;
   }
 }
 
