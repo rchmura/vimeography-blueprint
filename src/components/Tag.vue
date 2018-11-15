@@ -1,6 +1,4 @@
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
-
 const template = `
   <router-link :to="query">
     <span class="vimeography-tag-name">{{name}}</span>
@@ -8,14 +6,14 @@ const template = `
 `;
 
 const Tag = {
-  props: ['name', 'total'],
+  props: ['name', 'canonical', 'total'],
   template,
   computed: {
     query() {
       const q = {
         ...this.$route.query,
         vimeography_gallery: this.$store.state.gallery.id,
-        vimeography_tag: this.name
+        vimeography_tag: this.canonical
       };
 
       delete q.vimeography_video;
@@ -23,14 +21,6 @@ const Tag = {
       return '?' + Object.keys(q).map(k => k + '=' + encodeURIComponent(q[k])).join('&')
     },
   },
-  methods: {
-    ...mapActions([
-      'performSearch'
-    ]),
-    ...mapGetters([
-      'getVideosByTag'
-    ])
-  }
 }
 
 export default Tag;
@@ -39,14 +29,19 @@ export default Tag;
 <style lang="scss" scoped>
   a {
     background-color: #fff;
-    padding: 0.5rem 1rem;
     border-radius: 30px;
-    margin: 0 0.5rem 1rem 0;
     display: inline-block;
     font-weight: bold;
     text-decoration: none;
     border: 1px solid #eee;
     outline: none;
     color: #333;
+    font-size: 12px;
+    padding: 5px 12px;
+    margin: 0 5px 10px 0;
+  }
+
+  .router-link-exact-active {
+    background: #e9ecef;
   }
 </style>
