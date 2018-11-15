@@ -48,6 +48,7 @@ export default Search;
     margin-bottom: 1rem;
     position: relative;
     width: 240px;
+    height: 40px;
   }
 
   .text {
