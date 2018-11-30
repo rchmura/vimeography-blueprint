@@ -7,3 +7,4 @@
 
 export PlainOldPlayer from './PlainOldPlayer.vue';
 export ModernTouch from './ModernTouch.vue';
+export Geo from './Geo.vue';

@@ -5,19 +5,19 @@
 
   import {
     ModernTouch,
-    PlainOldPlayer
+    PlainOldPlayer,
+    Geo
   } from './Modals';
 
   const defaultTemplate = `
     <div class="vimeography-lightbox">
       <modal
         :name="this.modalId"
-        :max-width="800"
+        width="100%"
         :scrollable="true"
         :adaptive="true"
         :reset="true"
         @closed="clearRoute"
-        width="90%"
         height="auto"
         classes="vimeography-modal"
       >
@@ -91,7 +91,8 @@
     },
     components: {
       ModernTouch,
-      PlainOldPlayer
+      PlainOldPlayer,
+      Geo
     }
   }
 
@@ -111,5 +112,9 @@
 
   /deep/ .vimeography-modal {
     overflow: visible;
+  }
+
+  /deep/ .v--modal-overlay {
+    z-index: 9999;
   }
 </style>
