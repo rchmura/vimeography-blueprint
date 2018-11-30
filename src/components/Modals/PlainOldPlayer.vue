@@ -40,6 +40,8 @@
     box-shadow: 0 20px 60px -2px rgba(27, 33, 58, .4);
     transition: top 0.2s ease;
     overflow: visible;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   /deep/ .vimeography-player-container {

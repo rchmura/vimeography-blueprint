@@ -62,6 +62,8 @@
     box-shadow: 0 20px 60px -2px rgba(27, 33, 58, .4);
     padding: 30px;
     transition: top 0.2s ease;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .vimeography-header {
