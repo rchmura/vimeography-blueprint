@@ -94,54 +94,54 @@
         'playerLoaded'
       ]),
       loadVideo (videoId) {
+        this.player.unload().then( () => {
+          this.player.loadVideo(videoId).then( id => {
+            // the video successfully loaded
 
-        this.player.loadVideo(videoId).then( id => {
-          // the video successfully loaded
+            if ( this.playerSettings.responsive ) {
+              /**
+               * Determine the player aspect ratio and adjust the wrapper accordingly.
+               *
+               * @param  {[type]} dimensions [description]
+               * @return {[type]}            [description]
+               */
+              Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then( dimensions => {
+                const width = dimensions[0];
+                const height = dimensions[1];
+                const ratio = (height / width) * 100;
 
-          if ( this.playerSettings.responsive ) {
-            /**
-             * Determine the player aspect ratio and adjust the wrapper accordingly.
-             *
-             * @param  {[type]} dimensions [description]
-             * @return {[type]}            [description]
-             */
-            Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then( dimensions => {
-              const width = dimensions[0];
-              const height = dimensions[1];
-              const ratio = (height / width) * 100;
+                this.$refs.player.firstChild.style.padding = `${ratio}% 0 0 0`;
+              });
+            }
 
-              this.$refs.player.firstChild.style.padding = `${ratio}% 0 0 0`;
-            });
-          }
+            if ( this.playlistEnabled ) {
+              setTimeout(() => {
+                this.player.play();
+              }, 500);
+            }
 
-          if ( this.playlistEnabled ) {
-            setTimeout(() => {
-              this.player.play();
-            }, 500);
-          }
+          }).catch( error => {
+            console.dir(error);
+            switch (error.name) {
+              case 'TypeError':
+                // the id was not a number
+                break;
 
-        }).catch( error => {
-          console.dir(error);
-          switch (error.name) {
-            case 'TypeError':
-              // the id was not a number
-              break;
+              case 'PasswordError':
+                // the video is password-protected and the viewer needs to enter the
+                // password first
+                break;
 
-            case 'PasswordError':
-              // the video is password-protected and the viewer needs to enter the
-              // password first
-              break;
+              case 'PrivacyError':
+                // the video is password-protected or private
+                break;
 
-            case 'PrivacyError':
-              // the video is password-protected or private
-              break;
-
-            default:
-              // some other error occurred
-              break;
-          }
+              default:
+                // some other error occurred
+                break;
+            }
+          });
         });
-
       }
     }
   }
