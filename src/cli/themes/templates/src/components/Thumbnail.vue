@@ -5,7 +5,7 @@ import { Mixins } from 'vimeography-blueprint'
 const defaultTemplate = `
   <figure class="swiper-slide vimeography-thumbnail">
     <router-link class="vimeography-link" :title="video.name" :to="this.query" exact exact-active-class="vimeography-link-active">
-      <img class="vimeography-thumbnail-img" :src="thumbnailUrl" :alt="video.name" />
+      <img class="vimeography-thumbnail-img" v-lazy="thumbnailUrl" :alt="video.name" />
     </router-link>
   </figure>
 `;

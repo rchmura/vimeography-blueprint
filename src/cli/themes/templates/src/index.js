@@ -4,10 +4,12 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import VueObserveVisibility from 'vue-observe-visibility';
+import VueLazyload from 'vue-lazyload'
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(VueObserveVisibility);
+Vue.use(VueLazyload);
 
 Vue.config.devtools = true
 
