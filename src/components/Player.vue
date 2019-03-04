@@ -24,6 +24,7 @@
       this.player = new VimeoPlayer(this.$refs.player, {
         id: this.activeVideo.id,
         autoplay,
+        autopause: true,
         transparent: this.playerSettings.transparent,
         responsive: this.playerSettings.responsive,
         speed: this.playerSettings.speed,
