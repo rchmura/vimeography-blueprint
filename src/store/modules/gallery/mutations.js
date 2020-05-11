@@ -1,8 +1,7 @@
-import * as types from './types';
+import * as types from "./types";
 
 const mutations = {
-  [types.LOAD_GALLERY] (state, payload) {
-
+  [types.LOAD_GALLERY](state, payload) {
     state.id = payload.id;
     state.theme = payload.theme;
     state.version = payload.version;
@@ -14,7 +13,6 @@ const mutations = {
     state.tags = payload.tags || {};
 
     if (payload.paging) {
-
       state.paging.default = {
         sort: payload.paging.sort,
         direction: payload.paging.direction,
@@ -25,22 +23,41 @@ const mutations = {
         highRange: payload.paging.page,
         current: payload.paging.page,
         first: 1,
-        next: payload.paging.page + 1 <= ( Math.ceil( payload.paging.total / payload.paging.per_page ) ) ? payload.paging.page + 1 : null,
+        next:
+          payload.paging.page + 1 <=
+          Math.ceil(payload.paging.total / payload.paging.per_page)
+            ? payload.paging.page + 1
+            : null,
         previous: payload.paging.page - 1 > 0 ? payload.paging.page - 1 : null,
-        last: Math.ceil( payload.paging.total / payload.paging.per_page )
+        last: Math.ceil(payload.paging.total / payload.paging.per_page)
       };
-
     }
   },
 
-  [types.PERFORM_SEARCH] (state, payload) {
+  [types.PERFORM_SEARCH](state, payload) {
     state.loading = true;
     state.paging.filter.query = payload.query;
   },
 
-  [types.PERFORM_SEARCH_SUCCESS] (state, payload) {
+  [types.PERFORM_SEARCH_SUCCESS](state, payload) {
     // Set temporary search items in state.paging.filter
     state.loading = false;
+
+    // If response from search query does not contain a result set, no videos were found for that query.
+    if (!payload.data.video_set || payload.data.video_set.length === 0) {
+      state.paging.filter = {
+        ...state.paging.filter,
+        page: 1,
+        current: 1,
+        first: 1,
+        next: null,
+        previous: null,
+        last: null,
+        total: 0
+      };
+
+      return;
+    }
 
     state.paging.filter = {
       ...state.paging.filter,
@@ -49,28 +66,32 @@ const mutations = {
       current: payload.data.page,
       first: 1,
 
-      next: payload.data.page + 1 <= ( Math.ceil( payload.data.total / payload.data.per_page ) ) ? payload.data.page + 1 : null,
+      next:
+        payload.data.page + 1 <=
+        Math.ceil(payload.data.total / payload.data.per_page)
+          ? payload.data.page + 1
+          : null,
       previous: payload.data.page - 1 > 0 ? payload.data.page - 1 : null,
-      last: Math.ceil( payload.data.total / payload.data.per_page ),
+      last: Math.ceil(payload.data.total / payload.data.per_page),
 
       total: payload.data.total
-    }
+    };
 
-    if ( payload.data.page > state.paging.filter.highRange ) {
+    if (payload.data.page > state.paging.filter.highRange) {
       state.paging.filter.highRange = payload.data.page;
     }
 
-    if ( payload.data.page < state.paging.filter.lowRange ) {
+    if (payload.data.page < state.paging.filter.lowRange) {
       state.paging.filter.lowRange = payload.data.page;
     }
   },
 
-  [types.PERFORM_SEARCH_FAILURE] (state, payload) {
+  [types.PERFORM_SEARCH_FAILURE](state, payload) {
     state.loading = false;
-    state.error = 'errrrr!';
+    state.error = "errrrr!";
   },
 
-  [types.CLEAR_SEARCH] (state, payload) {
+  [types.CLEAR_SEARCH](state, payload) {
     state.paging.filter = {
       ...state.paging.filter,
       page: 1,
@@ -82,36 +103,39 @@ const mutations = {
       highRange: 1,
       lowRange: 1,
       total: 0,
-      query: ''
+      query: ""
     };
   },
 
-  [types.FETCH_PAGE] (state, payload) {
+  [types.FETCH_PAGE](state, payload) {
     state.loading = true;
   },
 
-  [types.FETCH_PAGE_SUCCESS] (state, payload) {
+  [types.FETCH_PAGE_SUCCESS](state, payload) {
     const paging = this.getters.paging;
 
     paging.page = payload.data.page;
     paging.current = payload.data.page;
-    paging.next = payload.data.page + 1 <= ( Math.ceil( paging.total / paging.perPage ) ) ? payload.data.page + 1 : null
-    paging.previous = payload.data.page - 1 > 0 ? payload.data.page - 1 : null
+    paging.next =
+      payload.data.page + 1 <= Math.ceil(paging.total / paging.perPage)
+        ? payload.data.page + 1
+        : null;
+    paging.previous = payload.data.page - 1 > 0 ? payload.data.page - 1 : null;
 
-    if ( payload.data.page > paging.highRange ) {
+    if (payload.data.page > paging.highRange) {
       paging.highRange = payload.data.page;
     }
 
-    if ( payload.data.page < paging.lowRange ) {
+    if (payload.data.page < paging.lowRange) {
       paging.lowRange = payload.data.page;
     }
 
     state.loading = false;
   },
-  [types.FETCH_PAGE_FAILURE] (state, payload) {
+  [types.FETCH_PAGE_FAILURE](state, payload) {
     state.loading = false;
-    state.error = 'errrrr!';
+    state.error = "errrrr!";
   }
-}
+};
 
 export default mutations;

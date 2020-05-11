@@ -1,10 +1,10 @@
 <script>
-  import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 
-  import Player from '../Player.vue';
-  import DownloadLink from '../DownloadLink.vue'
+import Player from "../Player.vue";
+import DownloadLink from "../DownloadLink.vue";
 
-  const template = `
+const defaultTemplate = `
     <div class="vimeography-modal-modern-touch">
       <div class="vimeography-header">
         <h2 class="vimeography-title">{{activeVideo.name}}</h2>
@@ -32,100 +32,100 @@
     </div>
   `;
 
-  const ModernTouch = {
-    name: 'modern-touch',
-    props: [
-      'activeVideo',
-      'modalId',
-      'nextVideoUrl'
-    ],
-    template,
-    components: {
-      Player,
-      DownloadLink
-    },
-    computed: {
-      tags() {
-        return this.activeVideo.tags.map(tag => tag.name).join(', ')
-      }
+const userTemplate = document.querySelector(
+  "#vimeography-component-modal-modern-touch"
+);
+
+const ModernTouch = {
+  name: "modern-touch",
+  props: ["activeVideo", "modalId", "nextVideoUrl"],
+  template: userTemplate ? userTemplate.innerText : defaultTemplate,
+  components: {
+    Player,
+    DownloadLink
+  },
+  computed: {
+    tags() {
+      return this.activeVideo.tags.map(tag => tag.name).join(", ");
     }
   }
+};
 
-  export default ModernTouch;
+export default ModernTouch;
 </script>
 
 <style lang="scss" scoped>
+.vimeography-modal-modern-touch {
+  background-color: white;
+  text-align: left;
+  border-radius: 3px;
+  box-shadow: 0 20px 60px -2px rgba(27, 33, 58, 0.4);
+  padding: 30px;
+  transition: top 0.2s ease;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.vimeography-header {
+  display: flex;
+}
+
+.vimeography-controls {
+  display: flex;
+
+  div {
+    cursor: pointer;
+  }
+
+  .vimeography-next {
+    height: 24px;
+    outline: none;
+    box-shadow: none;
+  }
+
+  svg {
+    display: block;
+    stroke: #9897a0;
+
+    &:hover {
+      stroke: #454548;
+    }
+  }
+}
+
+.vimeography-title {
+  flex: 1;
+  margin: 0 0 20px;
+  padding: 0;
+  color: #333333;
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 1.5em;
+}
+
+.vimeography-description {
+  margin: 10px 0 30px 0;
+  padding: 0;
+  color: #555555;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 1.5em;
+}
+
+.vimeography-plays,
+.vimeography-tags {
+  padding: 0;
+  color: #999;
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 1.5em;
+  display: inline-block;
+  margin: 0;
+}
+
+@media screen and (min-width: 550px) {
   .vimeography-modal-modern-touch {
-    background-color: white;
-    text-align: left;
-    border-radius: 3px;
-    box-shadow: 0 20px 60px -2px rgba(27, 33, 58, .4);
-    padding: 30px;
-    transition: top 0.2s ease;
-    max-width: 800px;
-    margin: 0 auto;
+    padding: 50px;
   }
-
-  .vimeography-header {
-    display: flex;
-  }
-
-  .vimeography-controls {
-    display: flex;
-
-    div {
-      cursor: pointer;
-    }
-
-    .vimeography-next {
-      height: 24px;
-      outline: none;
-      box-shadow: none;
-    }
-
-    svg {
-      display: block;
-      stroke: #9897a0;
-
-      &:hover {
-        stroke: #454548;
-      }
-    }
-  }
-
-  .vimeography-title {
-    flex: 1;
-    margin: 0 0 20px;
-    padding: 0;
-    color: #333333;
-    font-size: 22px;
-    font-weight: normal;
-    line-height: 1.5em;
-  }
-
-  .vimeography-description {
-    margin: 10px 0 30px 0;
-    padding: 0;
-    color: #555555;
-    font-size: 15px;
-    font-weight: normal;
-    line-height: 1.5em;
-  }
-
-  .vimeography-plays,
-  .vimeography-tags {
-    padding: 0;
-    color: #999;
-    font-size: 11px;
-    font-weight: normal;
-    line-height: 1.5em;
-    display: inline-block;
-    margin: 0;
-  }
-
-  @media screen and (min-width: 550px) {
-    .vimeography-modal-modern-touch {
-      padding: 50px;
-    }
-  }
+}
 </style>
