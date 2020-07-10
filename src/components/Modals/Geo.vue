@@ -27,7 +27,7 @@ const template = `
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="4" y1="12" x2="20" y2="12"></line><polyline points="14 6 20 12 14 18"></polyline></svg>
           </router-link>
 
-          <a href="#" class="vimeography-close" @click="$modal.hide(modalId)">
+          <a href="#" class="vimeography-close" @click.prevent="$modal.hide(modalId)">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </a>
         </div>
@@ -57,6 +57,7 @@ export default Geo;
 
 <style lang="scss" scoped>
 .vimeography-modal-geo {
+  pointer-events: all;
   padding: 30px;
   transition: top 0.2s ease;
 

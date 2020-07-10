@@ -113,6 +113,9 @@ export default Lightbox;
 
 /deep/ .vimeography-modal {
   overflow: visible;
+  background: transparent;
+  box-shadow: none;
+  pointer-events: none;
 }
 
 /deep/ .v--modal-overlay {

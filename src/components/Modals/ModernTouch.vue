@@ -14,7 +14,7 @@ const defaultTemplate = `
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="4" y1="12" x2="20" y2="12"></line><polyline points="14 6 20 12 14 18"></polyline></svg>
           </router-link>
 
-          <a href="#" @click.prevent="$modal.hide(modalId)">
+          <a class="vimeography-close" href="#" @click.prevent="$modal.hide(modalId)">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </a>
         </div>
@@ -56,6 +56,7 @@ export default ModernTouch;
 
 <style lang="scss" scoped>
 .vimeography-modal-modern-touch {
+  pointer-events: all;
   background-color: white;
   text-align: left;
   border-radius: 3px;
@@ -81,6 +82,7 @@ export default ModernTouch;
     height: 24px;
     outline: none;
     box-shadow: none;
+    margin-right: 20px;
   }
 
   svg {
@@ -126,6 +128,10 @@ export default ModernTouch;
 @media screen and (min-width: 550px) {
   .vimeography-modal-modern-touch {
     padding: 50px;
+  }
+
+  .vimeography-controls .vimeography-next {
+    margin-right: 0;
   }
 }
 </style>
