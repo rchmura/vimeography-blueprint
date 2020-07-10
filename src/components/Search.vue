@@ -78,6 +78,7 @@ input.input {
   border: 1px solid #e4e4e4;
   margin: 0;
   height: auto;
+  font-size: 16px;
 }
 
 .icon {
