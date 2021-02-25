@@ -3,7 +3,7 @@ import { mapActions, mapState, mapGetters } from "vuex";
 import VimeoPlayer from "@vimeo/player";
 
 const template = `
-    <div class="vimeography-player-container" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+    <div class="vimeography-player-container fitvidsignore" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
       <meta itemprop="name" :content="this.activeVideo.name" />
       <meta itemprop="description" :content="this.activeVideo.description" />
       <meta itemprop="thumbnailUrl" :content="this.activeVideo.thumbnail_large" />
