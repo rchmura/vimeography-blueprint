@@ -8,6 +8,7 @@ const template = `
       <meta itemprop="description" :content="this.activeVideo.description" />
       <meta itemprop="thumbnailUrl" :content="this.activeVideo.thumbnail_large" />
       <meta itemprop="uploadDate" :content="this.activeVideo.created_time" />
+      <link itemprop="embedUrl" :href="this.embedUrl" />
 
       <div class="vimeography-player" ref="player"></div>
     </div>
@@ -27,7 +28,7 @@ const Player = {
       transparent: this.playerSettings.transparent,
       responsive: this.playerSettings.responsive,
       speed: this.playerSettings.speed,
-      playsinline: this.playerSettings.playsinline
+      playsinline: this.playerSettings.playsinline,
     };
 
     if (
@@ -42,7 +43,7 @@ const Player = {
 
     this.player = new VimeoPlayer(this.$refs.player, options);
 
-    this.player.on("ended", data => {
+    this.player.on("ended", (data) => {
       this.playerEnded(data);
 
       if (this.playlistEnabled) {
@@ -54,7 +55,7 @@ const Player = {
         const query = {
           ...this.$route.query,
           vimeography_gallery: this.galleryId,
-          vimeography_video: nextVideoId
+          vimeography_video: nextVideoId,
         };
 
         this.$router.push({ query });
@@ -63,7 +64,7 @@ const Player = {
 
     this.player
       .ready()
-      .catch(error => {
+      .catch((error) => {
         const message = `Vimeography could not load this video due to its privacy settings. Click OK to learn how to fix this issue.`;
         console.log(error.message);
         if (window.confirm(message)) {
@@ -73,36 +74,51 @@ const Player = {
         }
       })
       .then(() => this.playerReady(this.player));
-    this.player.on("play", data => this.playerPlay(data));
-    this.player.on("pause", data => this.playerPause(data));
-    this.player.on("timeupdate", data => this.playerTimeUpdate(data));
-    this.player.on("progress", data => this.playerProgress(data));
-    this.player.on("seeked", data => this.playerSeeked(data));
-    this.player.on("volumechange", data => this.playerVolumeChange(data));
-    this.player.on("loaded", data => this.playerLoaded(data));
+    this.player.on("play", (data) => this.playerPlay(data));
+    this.player.on("pause", (data) => this.playerPause(data));
+    this.player.on("timeupdate", (data) => this.playerTimeUpdate(data));
+    this.player.on("progress", (data) => this.playerProgress(data));
+    this.player.on("seeked", (data) => this.playerSeeked(data));
+    this.player.on("volumechange", (data) => this.playerVolumeChange(data));
+    this.player.on("loaded", (data) => this.playerLoaded(data));
   },
   watch: {
     activeVideo(nextVideo, prevVideo) {
       this.loadVideo(nextVideo.id);
-    }
+    },
   },
   computed: {
     ...mapState({
-      galleryId: state => state.gallery.id,
-      playlistEnabled: state => state.gallery.settings.playlist.enabled,
-      playerSettings: state => {
+      galleryId: (state) => state.gallery.id,
+      playlistEnabled: (state) => state.gallery.settings.playlist.enabled,
+      playerSettings: (state) => {
         if (typeof state.gallery.settings.player == "undefined") {
           return {
             responsive: true,
             transparent: true,
             speed: true,
-            playsinline: false
+            playsinline: false,
           };
         }
 
         return state.gallery.settings.player;
+      },
+    }),
+    embedUrl: function() {
+      if (
+        this.activeVideo &&
+        this.activeVideo.embed &&
+        this.activeVideo.embed.html
+      ) {
+        const node = document
+          .createRange()
+          .createContextualFragment(this.activeVideo.embed.html);
+        const embedUrl = node.firstChild.src;
+        return embedUrl;
+      } else {
+        return "";
       }
-    })
+    },
   },
   methods: {
     ...mapActions([
@@ -114,13 +130,13 @@ const Player = {
       "playerProgress",
       "playerSeeked",
       "playerVolumeChange",
-      "playerLoaded"
+      "playerLoaded",
     ]),
     loadVideo(videoId) {
       this.player.unload().then(() => {
         this.player
           .loadVideo(videoId)
-          .then(id => {
+          .then((id) => {
             // the video successfully loaded
 
             if (this.playerSettings.responsive) {
@@ -132,8 +148,8 @@ const Player = {
                */
               Promise.all([
                 this.player.getVideoWidth(),
-                this.player.getVideoHeight()
-              ]).then(dimensions => {
+                this.player.getVideoHeight(),
+              ]).then((dimensions) => {
                 const width = dimensions[0];
                 const height = dimensions[1];
                 const ratio = (height / width) * 100;
@@ -148,7 +164,7 @@ const Player = {
               }, 500);
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.dir(error);
             switch (error.name) {
               case "TypeError":
@@ -170,8 +186,8 @@ const Player = {
             }
           });
       });
-    }
-  }
+    },
+  },
 };
 
 export default Player;
