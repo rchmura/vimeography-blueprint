@@ -1,13 +1,13 @@
-import axios from 'axios';
+const axios = require("axios").default;
 
-import * as types from './types'
+import * as types from "./types";
 
 export const loadVideo = (store, id) => {
   store.commit({
     type: types.LOAD_VIDEO,
-    id
-  })
-}
+    id,
+  });
+};
 
 export default {
   loadVideo,

@@ -1,19 +1,19 @@
 /* This file should be included in Vimeography 2 PRO core */
-import axios from "axios";
+const axios = require("axios").default;
 
 import * as types from "./types";
 
 const loadGallery = (store, payload) => {
   store.commit({
     type: types.LOAD_GALLERY,
-    payload
+    payload,
   });
 };
 
 const advanceGallery = (store, payload) => {
   store.commit({
     type: types.ADVANCE_GALLERY,
-    payload
+    payload,
   });
 };
 
@@ -42,8 +42,8 @@ const paginate = async (store, pageNumber) => {
       data: {
         page: pageNumber,
         current: pageNumber,
-        video_set: []
-      }
+        video_set: [],
+      },
     });
 
     return;
@@ -57,7 +57,7 @@ const paginate = async (store, pageNumber) => {
       page: pageNumber,
       per_page: paging.perPage,
       direction: paging.direction,
-      sort: paging.sort
+      sort: paging.sort,
     };
 
     if (paging.query) {
@@ -67,7 +67,7 @@ const paginate = async (store, pageNumber) => {
 
     store.commit({
       type: types.FETCH_PAGE,
-      ...payload
+      ...payload,
     });
 
     try {
@@ -75,8 +75,8 @@ const paginate = async (store, pageNumber) => {
         params: {
           action: "vimeography_pro_request",
           nonce: store.state.settings.xhr.nonce,
-          payload
-        }
+          payload,
+        },
       });
 
       store.commit({
@@ -84,14 +84,14 @@ const paginate = async (store, pageNumber) => {
         ...response,
         data: {
           ...payload,
-          ...response.data
-        }
+          ...response.data,
+        },
       });
     } catch (e) {
       store.commit({
         type: types.FETCH_PAGE_FAILURE,
         message: e.message,
-        ...payload
+        ...payload,
       });
     }
   }
@@ -151,7 +151,7 @@ const fetchPage = async (store, nextOrPrevious) => {
       page: pageNumber,
       per_page: paging.perPage,
       direction: paging.direction,
-      sort: paging.sort
+      sort: paging.sort,
     };
 
     if (paging.query) {
@@ -161,7 +161,7 @@ const fetchPage = async (store, nextOrPrevious) => {
 
     store.commit({
       type: types.FETCH_PAGE,
-      ...payload
+      ...payload,
     });
 
     try {
@@ -169,8 +169,8 @@ const fetchPage = async (store, nextOrPrevious) => {
         params: {
           action: "vimeography_pro_request",
           nonce: store.state.settings.xhr.nonce,
-          payload
-        }
+          payload,
+        },
       });
 
       store.commit({
@@ -178,14 +178,14 @@ const fetchPage = async (store, nextOrPrevious) => {
         ...response,
         data: {
           ...payload,
-          ...response.data
-        }
+          ...response.data,
+        },
       });
     } catch (e) {
       store.commit({
         type: types.FETCH_PAGE_FAILURE,
         message: e.message,
-        ...payload
+        ...payload,
       });
     }
   }
@@ -201,7 +201,7 @@ const performSearch = async (store, query) => {
 
   store.commit({
     type: types.PERFORM_SEARCH,
-    query
+    query,
   });
 
   const payload = {
@@ -210,7 +210,7 @@ const performSearch = async (store, query) => {
     per_page: paging.perPage,
     sort: paging.sort,
     direction: paging.direction,
-    query
+    query,
   };
 
   try {
@@ -218,20 +218,20 @@ const performSearch = async (store, query) => {
       params: {
         action: "vimeography_pro_request",
         nonce: store.state.settings.xhr.nonce,
-        payload
-      }
+        payload,
+      },
     });
 
     store.commit({
       type: types.PERFORM_SEARCH_SUCCESS,
       ...response,
-      query
+      query,
     });
   } catch (e) {
     store.commit({
       type: types.PERFORM_SEARCH_FAILURE,
       message: e.message,
-      query
+      query,
     });
   }
 };
@@ -241,5 +241,5 @@ export default {
   fetchPage,
   advanceGallery,
   performSearch,
-  paginate
+  paginate,
 };
