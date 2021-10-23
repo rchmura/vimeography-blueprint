@@ -2674,7 +2674,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Player_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Player_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Player_vue__) if(["default","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Player_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 function injectStyle (ssrContext) {
-  __webpack_require__(277)
+  __webpack_require__(306)
 }
 var normalizeComponent = __webpack_require__(14)
 /* script */
@@ -2687,7 +2687,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-5dd10d9e"
+var __vue_scopeId__ = "data-v-4db2ecef"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -4484,9 +4484,9 @@ __webpack_require__(8);
 
 __webpack_require__(202);
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(5));
-
 __webpack_require__(66);
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(5));
 
 var _vuex = __webpack_require__(16);
 
@@ -4504,24 +4504,8 @@ var Player = {
   mounted: function mounted() {
     var _this = this;
 
-    var isModal = typeof this.$modal !== "undefined";
-    var autoplay = isModal;
-    var options = {
-      autoplay: autoplay,
-      autopause: true,
-      transparent: this.playerSettings.transparent,
-      responsive: this.playerSettings.responsive,
-      speed: this.playerSettings.speed,
-      playsinline: this.playerSettings.playsinline
-    };
-
-    if (this.activeVideo.privacy && this.activeVideo.privacy.view && this.activeVideo.privacy.view === "unlisted") {
-      options.url = this.activeVideo.link;
-    } else {
-      options.id = this.activeVideo.id;
-    }
-
-    this.player = new _player["default"](this.$refs.player, options);
+    var playerSettings = this.buildPlayerSettings(this.activeVideo);
+    this.player = new _player["default"](this.$refs.player, playerSettings);
     this.player.on("ended", function (data) {
       _this.playerEnded(data);
 
@@ -4574,7 +4558,8 @@ var Player = {
   },
   watch: {
     activeVideo: function activeVideo(nextVideo, prevVideo) {
-      this.loadVideo(nextVideo.id);
+      var playerSettings = this.buildPlayerSettings(nextVideo);
+      this.loadVideo(playerSettings);
     }
   },
   computed: _objectSpread({}, (0, _vuex.mapState)({
@@ -4608,13 +4593,33 @@ var Player = {
     }
   }),
   methods: _objectSpread({}, (0, _vuex.mapActions)(["playerReady", "playerPlay", "playerPause", "playerEnded", "playerTimeUpdate", "playerProgress", "playerSeeked", "playerVolumeChange", "playerLoaded"]), {
-    loadVideo: function loadVideo(videoId) {
+    buildPlayerSettings: function buildPlayerSettings(video) {
+      var isModal = typeof this.$modal !== "undefined";
+      var autoplay = isModal;
+      var options = {
+        autoplay: autoplay,
+        autopause: true,
+        transparent: this.playerSettings.transparent,
+        responsive: this.playerSettings.responsive,
+        speed: this.playerSettings.speed,
+        playsinline: this.playerSettings.playsinline
+      };
+
+      if (video.privacy && video.privacy.view && video.privacy.view === "unlisted") {
+        options.url = video.link;
+      } else {
+        options.id = video.id;
+      }
+
+      return options;
+    },
+    loadVideo: function loadVideo(playerSettings) {
       var _this2 = this;
 
       this.player.unload().then(function () {
-        _this2.player.loadVideo(videoId).then(function (id) {
+        _this2.player.loadVideo(playerSettings).then(function (id) {
           // the video successfully loaded
-          if (_this2.playerSettings.responsive) {
+          if (playerSettings.responsive) {
             /**
              * Determine the player aspect ratio and adjust the wrapper accordingly.
              *
@@ -13011,20 +13016,7 @@ exports.push([module.i, ".vimeography-modal-geo[data-v-223744b3]{pointer-events:
 
 
 /***/ }),
-/* 206 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(13)();
-// imports
-
-
-// module
-exports.push([module.i, ".vimeography-plain-old-player[data-v-42a3ae9f]{pointer-events:all;position:relative;background-color:#fff;text-align:left;border-radius:3px;box-shadow:0 20px 60px -2px rgba(27,33,58,.4);transition:top .2s ease;overflow:visible;max-width:800px;margin:0 auto}[data-v-42a3ae9f] .vimeography-player-container{margin:0}.vimeography-controls[data-v-42a3ae9f]{position:absolute;top:-16px;right:-16px;cursor:pointer;background-color:#333;z-index:1;border-radius:50%;padding:3px;box-shadow:0 2px 5px rgba(0,0,0,.15);border:2px solid #fff}.vimeography-controls[data-v-42a3ae9f]:hover{background-color:#444}.vimeography-controls svg[data-v-42a3ae9f]{display:block;stroke:#fff}[data-v-42a3ae9f] .vimeography-download{position:absolute;width:100%;text-align:center;bottom:-32px;bottom:-2rem}[data-v-42a3ae9f] .vimeography-download a{background:#222225;padding:5.6px 16px;padding:.35rem 1rem;border-radius:1rem;color:#2e99ea;box-shadow:none;font-size:14.4px;font-size:.9rem}", ""]);
-
-// exports
-
-
-/***/ }),
+/* 206 */,
 /* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13033,7 +13025,7 @@ exports = module.exports = __webpack_require__(13)();
 
 
 // module
-exports.push([module.i, ".vimeography-player-container[data-v-5dd10d9e]{margin-bottom:16px;margin-bottom:1rem}.vimeography-player[data-v-5dd10d9e]{position:relative}.vimeography-player[data-v-5dd10d9e]:before{content:\"\";box-sizing:border-box;position:absolute;top:50%;left:50%;width:30px;height:30px;margin-top:-15px;margin-left:-15px;border-radius:50%;border:1px solid #ccc;border-top-color:#07d;animation:spinner-data-v-5dd10d9e .6s linear infinite}.vimeography-player>div[data-v-5dd10d9e]{transition:padding .1s ease-in}.vimeography-player[data-v-5dd10d9e] iframe{position:relative}.vimeography-player[data-v-5dd10d9e] .fluid-width-video-wrapper iframe{position:absolute}@keyframes spinner-data-v-5dd10d9e{to{transform:rotate(1turn)}}", ""]);
+exports.push([module.i, ".vimeography-plain-old-player[data-v-42a3ae9f]{pointer-events:all;position:relative;background-color:#fff;text-align:left;border-radius:3px;box-shadow:0 20px 60px -2px rgba(27,33,58,.4);transition:top .2s ease;overflow:visible;max-width:800px;margin:0 auto}[data-v-42a3ae9f] .vimeography-player-container{margin:0}.vimeography-controls[data-v-42a3ae9f]{position:absolute;top:-16px;right:-16px;cursor:pointer;background-color:#333;z-index:1;border-radius:50%;padding:3px;box-shadow:0 2px 5px rgba(0,0,0,.15);border:2px solid #fff}.vimeography-controls[data-v-42a3ae9f]:hover{background-color:#444}.vimeography-controls svg[data-v-42a3ae9f]{display:block;stroke:#fff}[data-v-42a3ae9f] .vimeography-download{position:absolute;width:100%;text-align:center;bottom:-32px;bottom:-2rem}[data-v-42a3ae9f] .vimeography-download a{background:#222225;padding:5.6px 16px;padding:.35rem 1rem;border-radius:1rem;color:#2e99ea;box-shadow:none;font-size:14.4px;font-size:.9rem}", ""]);
 
 // exports
 
@@ -15278,7 +15270,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_PlainOldPlayer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_PlainOldPlayer_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_PlainOldPlayer_vue__) if(["default","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_PlainOldPlayer_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 function injectStyle (ssrContext) {
-  __webpack_require__(276)
+  __webpack_require__(277)
 }
 var normalizeComponent = __webpack_require__(14)
 /* script */
@@ -15447,19 +15439,7 @@ if(content.locals) module.exports = content.locals;
 var update = __webpack_require__(15)("99c76f3a", content, true, {});
 
 /***/ }),
-/* 276 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(206);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(15)("24682b82", content, true, {});
-
-/***/ }),
+/* 276 */,
 /* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15470,7 +15450,7 @@ var content = __webpack_require__(207);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(15)("29f55b92", content, true, {});
+var update = __webpack_require__(15)("24682b82", content, true, {});
 
 /***/ }),
 /* 278 */
@@ -15601,6 +15581,51 @@ module.exports = function listToStyles (parentId, list) {
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_286__;
+
+/***/ }),
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(13)();
+// imports
+
+
+// module
+exports.push([module.i, ".vimeography-player-container[data-v-4db2ecef]{margin-bottom:16px;margin-bottom:1rem}.vimeography-player[data-v-4db2ecef]{position:relative}.vimeography-player[data-v-4db2ecef]:before{content:\"\";box-sizing:border-box;position:absolute;top:50%;left:50%;width:30px;height:30px;margin-top:-15px;margin-left:-15px;border-radius:50%;border:1px solid #ccc;border-top-color:#07d;animation:spinner-data-v-4db2ecef .6s linear infinite}.vimeography-player>div[data-v-4db2ecef]{transition:padding .1s ease-in}.vimeography-player[data-v-4db2ecef] iframe{position:relative}.vimeography-player[data-v-4db2ecef] .fluid-width-video-wrapper iframe{position:absolute}@keyframes spinner-data-v-4db2ecef{to{transform:rotate(1turn)}}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(305);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(15)("a2d4ec4c", content, true, {});
 
 /***/ })
 /******/ ]);
