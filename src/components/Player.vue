@@ -19,29 +19,8 @@ const Player = {
   name: "Player",
   props: ["activeVideo"],
   mounted: function() {
-    const isModal = typeof this.$modal !== "undefined";
-    const autoplay = isModal;
-
-    let options = {
-      autoplay,
-      autopause: true,
-      transparent: this.playerSettings.transparent,
-      responsive: this.playerSettings.responsive,
-      speed: this.playerSettings.speed,
-      playsinline: this.playerSettings.playsinline,
-    };
-
-    if (
-      this.activeVideo.privacy &&
-      this.activeVideo.privacy.view &&
-      this.activeVideo.privacy.view === "unlisted"
-    ) {
-      options.url = this.activeVideo.link;
-    } else {
-      options.id = this.activeVideo.id;
-    }
-
-    this.player = new VimeoPlayer(this.$refs.player, options);
+    const playerSettings = this.buildPlayerSettings(this.activeVideo);
+    this.player = new VimeoPlayer(this.$refs.player, playerSettings);
 
     this.player.on("ended", (data) => {
       this.playerEnded(data);
@@ -84,7 +63,8 @@ const Player = {
   },
   watch: {
     activeVideo(nextVideo, prevVideo) {
-      this.loadVideo(nextVideo.id);
+      const playerSettings = this.buildPlayerSettings(nextVideo);
+      this.loadVideo(playerSettings);
     },
   },
   computed: {
@@ -118,7 +98,7 @@ const Player = {
       } else {
         return "";
       }
-    },
+    }
   },
   methods: {
     ...mapActions([
@@ -132,14 +112,39 @@ const Player = {
       "playerVolumeChange",
       "playerLoaded",
     ]),
-    loadVideo(videoId) {
+    buildPlayerSettings(video) {
+      const isModal = typeof this.$modal !== "undefined";
+      const autoplay = isModal;
+
+      let options = {
+        autoplay,
+        autopause: true,
+        transparent: this.playerSettings.transparent,
+        responsive: this.playerSettings.responsive,
+        speed: this.playerSettings.speed,
+        playsinline: this.playerSettings.playsinline,
+      };
+
+      if (
+        video.privacy &&
+        video.privacy.view &&
+        video.privacy.view === "unlisted"
+      ) {
+        options.url = video.link;
+      } else {
+        options.id = video.id;
+      }
+
+      return options;
+    },
+    loadVideo(playerSettings) {
       this.player.unload().then(() => {
         this.player
-          .loadVideo(videoId)
+          .loadVideo(playerSettings)
           .then((id) => {
             // the video successfully loaded
 
-            if (this.playerSettings.responsive) {
+            if (playerSettings.responsive) {
               /**
                * Determine the player aspect ratio and adjust the wrapper accordingly.
                *

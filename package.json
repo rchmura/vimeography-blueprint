@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "watch": "webpack --watch --progress",
-    "build": "NODE_ENV=production webpack -p --progress --colors --env production",
+    "build": "NODE_ENV=production webpack --progress --env production",
     "theme:create": "gulp --gulpfile ./src/cli/themes/create.js"
   },
   "peerDependencies": {
