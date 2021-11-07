@@ -26,19 +26,22 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.s?css$/,
-        exclude: /node_modules/,
+        test: /\.(scss|css)$/,
         use: [
           'vue-style-loader',
           {
-            loader: 'css-loader',
-            options: { importLoaders: 1 }
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              importLoaders: 1
+            },
           },
           {
             loader: "postcss-loader",
             options: {
               postcssOptions: {
                 plugins: [
+                  require('postcss-nested'),
                   [
                     "postcss-preset-env",
                     {
@@ -49,8 +52,8 @@ module.exports = {
               },
             },
           },
-        ]
-      }
+        ],
+      },
     ]
   },
   externals: {
