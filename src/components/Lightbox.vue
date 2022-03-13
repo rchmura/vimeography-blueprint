@@ -36,7 +36,12 @@ const Lightbox = {
   methods: {
     ...mapActions(["loadVideo"]),
     clearRoute(event) {
-      this.$router.push(window.location.pathname);
+      const { vimeography_video, vimeography_gallery, ...q } = this.$route.query;
+
+      const qs = '?' + Object.keys(q).map(k => k + '=' + encodeURIComponent(q[k])).join('&');
+      const destination = Object.keys(q).length > 0 ? `${window.location.pathname}${qs}` : window.location.pathname;
+
+      this.$router.push(destination);
     }
   },
   watch: {
