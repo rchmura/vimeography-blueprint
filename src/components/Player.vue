@@ -114,7 +114,7 @@ const Player = {
     ]),
     buildPlayerSettings(video) {
       const isModal = typeof this.$modal !== "undefined";
-      const autoplay = isModal;
+      const autoplay = isModal ? true : this.playerSettings.autoplay;
 
       let options = {
         autoplay,
