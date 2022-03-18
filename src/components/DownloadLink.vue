@@ -24,14 +24,21 @@
           return '#'
         }
 
-        // Check for best available HD download first.
+        // Check for best available UHD download first.
+        let uhd = data.video.download.filter( d => d.quality == 'uhd' ).sort( (a, b) => b.width - a.width )
+
+        if ( uhd.length > 0 ) {
+          return uhd[0].link;
+        }
+
+        // Check for best available HD download next.
         let hd = data.video.download.filter( d => d.quality == 'hd' ).sort( (a, b) => b.width - a.width )
 
         if ( hd.length > 0 ) {
-          return hd[0].link
+          return hd[0].link;
         }
 
-        // Second, attempt to return source video file
+        // Third, attempt to return source video file
         let source = data.video.download.find( d => d.quality == 'source' );
 
         if ( typeof source !== 'undefined' ) {
