@@ -60,6 +60,7 @@ const mutations = {
     }
 
     state.paging.filter = {
+      ...state.paging.default,
       ...state.paging.filter,
       page: payload.data.page,
       perPage: payload.data.per_page,
