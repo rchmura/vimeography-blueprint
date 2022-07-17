@@ -117,6 +117,7 @@ const Player = {
       const autoplay = isModal ? true : this.playerSettings.autoplay;
 
       let options = {
+        url: video.player_embed_url,
         autoplay,
         autopause: true,
         transparent: this.playerSettings.transparent,
@@ -124,16 +125,6 @@ const Player = {
         speed: this.playerSettings.speed,
         playsinline: this.playerSettings.playsinline,
       };
-
-      if (
-        video.privacy &&
-        video.privacy.view &&
-        video.privacy.view === "unlisted"
-      ) {
-        options.url = video.link;
-      } else {
-        options.id = video.id;
-      }
 
       return options;
     },
