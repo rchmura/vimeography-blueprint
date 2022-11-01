@@ -24,7 +24,7 @@
     "babel-loader": "8.2.2",
     "css-loader": "^6.4.0",
     "file-loader": "^6.2.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-inject-string": "^1.1.0",
     "gulp-install": "^1.1.0",
     "gulp-prompt": "^0.6.0",
